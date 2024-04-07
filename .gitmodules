@@ -1,0 +1,3 @@
+[submodule "cpubsub"]
+	path = cpubsub
+	url = git@github.com:gswdh/cpubsub.git
