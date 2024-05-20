@@ -4,18 +4,33 @@
 #include <stdint.h>
 
 typedef struct __attribute__((packed)) {
-  uint mid;
-  float vbat_v;
-  float vcells_v[4];
-} MSGBatteryVoltage_t;
-#define MSGBatteryVoltage_MID (0x1)
-#define MSGBatteryVoltage_MID_LEN (sizeof(MSGBatteryVoltage_MID))
+  uint32_t mid;
+  uint8_t button;
+  uint8_t edge;
+} MSGButtonPress_t;
+#define MSGButtonPress_MID (0x1)
+#define MSGButtonPress_LEN (sizeof(MSGButtonPress_t))
 
 typedef struct __attribute__((packed)) {
-  uint mid;
-  ubyte power_state;
-} MSGPowerStatus_t;
-#define MSGPowerStatus_MID (0x2)
-#define MSGPowerStatus_MID_LEN (sizeof(MSGPowerStatus_MID))
+  uint32_t mid;
+  float sensitivity_iso;
+  float shutter_speed;
+} MSGSensorSettings_t;
+#define MSGSensorSettings_MID (0x2)
+#define MSGSensorSettings_LEN (sizeof(MSGSensorSettings_t))
+
+typedef struct __attribute__((packed)) {
+  uint32_t mid;
+  uint32_t action;
+} MSGGUIActions_t;
+#define MSGGUIActions_MID (0x3)
+#define MSGGUIActions_LEN (sizeof(MSGGUIActions_t))
+
+typedef struct __attribute__((packed)) {
+  uint32_t mid;
+  uint32_t time;
+} MSGTick_t;
+#define MSGTick_MID (0x4)
+#define MSGTick_LEN (sizeof(MSGTick_t))
 
 #endif
