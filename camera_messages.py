@@ -38,9 +38,22 @@ class MSGTick(CStructBase):
     def __init__(self, time):
         self.time = time
 
+class MSGBatteryStats(CStructBase):
+    fields = [
+        ("mid", ctypes.c_uint32),
+        ("voltage", ctypes.c_float),
+        ("current", ctypes.c_float),
+        ("soc", ctypes.c_float),
+    ]
+    def __init__(self, voltage, current, soc):
+        self.voltage = voltage
+        self.current = current
+        self.soc = soc
+        
 MSGS = {
     0x01:MSGButtonPress,
     0x02:MSGSensorSettings,
     0x03:MSGGUIActions,
     0x04:MSGTick,
+    0x05:MSGBatteryStats,
 }

@@ -33,4 +33,13 @@ typedef struct __attribute__((packed)) {
 #define MSGTick_MID (0x4)
 #define MSGTick_LEN (sizeof(MSGTick_t))
 
+typedef struct __attribute__((packed)) {
+  uint32_t mid;
+  float voltage;
+  float current;
+  float soc;
+} MSGBatteryStats_t;
+#define MSGBatteryStats_MID (0x5)
+#define MSGBatteryStats_LEN (sizeof(MSGBatteryStats_t))
+
 #endif
