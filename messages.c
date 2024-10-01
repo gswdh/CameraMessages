@@ -28,6 +28,9 @@ uint32_t messages_msg_len(topic_t mid)
 	case MSGUSBPDStats_MID:
 		return MSGUSBPDStats_LEN;
 		break;
+	case MSGPowerButton_MID:
+		return MSGPowerButton_LEN;
+		break;
 	default:
 		return 0;
 		break;

@@ -2,7 +2,6 @@
 #define __MESSAGES_H__
 
 #include <stdint.h>
-
 #include "topic.h"
 
 typedef struct __attribute__((packed))
@@ -44,6 +43,9 @@ typedef struct __attribute__((packed))
 	float voltage;
 	float current;
 	float soc;
+	float capacity;
+	uint16_t status;
+	uint16_t faults;
 } MSGBatteryStats_t;
 #define MSGBatteryStats_MID (0x1005)
 #define MSGBatteryStats_LEN (sizeof(MSGBatteryStats_t))
@@ -81,6 +83,14 @@ typedef struct __attribute__((packed))
 } MSGUSBPDStats_t;
 #define MSGUSBPDStats_MID (0x1008)
 #define MSGUSBPDStats_LEN (sizeof(MSGUSBPDStats_t))
+
+typedef struct __attribute__((packed))
+{
+	uint32_t mid;
+	uint32_t state;
+} MSGPowerButton_t;
+#define MSGPowerButton_MID (0x1009)
+#define MSGPowerButton_LEN (sizeof(MSGPowerButton_t))
 
 uint32_t messages_msg_len(topic_t mid);
 

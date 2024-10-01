@@ -45,12 +45,18 @@ class MSGBatteryStats(CStructBase):
         ("voltage", ctypes.c_float),
         ("current", ctypes.c_float),
         ("soc", ctypes.c_float),
+        ("capacity", ctypes.c_float),
+        ("status", ctypes.c_uint16),
+        ("faults", ctypes.c_uint16),
     ]
 
-    def __init__(self, voltage, current, soc):
+    def __init__(self, voltage, current, soc, capacity, status, faults):
         self.voltage = voltage
         self.current = current
         self.soc = soc
+        self.capacity = capacity
+        self.status = status
+        self.faults = faults
 
 
 class MSGChargingStats(CStructBase):
@@ -111,6 +117,16 @@ class MSGUSBPDStats(CStructBase):
         self.bus_power = attached
 
 
+class MSGPowerButton(CStructBase):
+    fields = [
+        ("mid", ctypes.c_uint32),
+        ("state", ctypes.c_uint32),
+    ]
+
+    def __init__(self, state):
+        self.state = state
+
+
 MSGS = {
     0x1001: MSGButtonPress,
     0x1002: MSGSensorSettings,
@@ -120,4 +136,5 @@ MSGS = {
     0x1006: MSGChargingStats,
     0x1007: MSGSystemStats,
     0x1008: MSGUSBPDStats,
+    0x1009: MSGPowerButton,
 }
